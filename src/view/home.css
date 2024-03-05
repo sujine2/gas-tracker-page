@@ -55,6 +55,7 @@ body {
   background-clip: padding-box, border-box;
   width: 18rem;
   height: 10rem;
+  cursor: pointer; 
   /* box-shadow: 10px 5px 5px white; */
 }
 

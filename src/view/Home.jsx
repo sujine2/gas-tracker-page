@@ -1,14 +1,29 @@
-import React from "react";
+import {useState} from "react";
 import "./home.css";
+import { GasView } from "../modal/GasView";
 
 export const Home = () => {
+  const [chain, setChain] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div>
       <div className="title-wrapper">
         <div className="title">Gas - trakcer...</div>
       </div>
       <div className="container">
-        <div className="content ethereum">
+        <div className="content ethereum" onClick={() => {
+          openModal()
+          setChain("ethereum")
+        }}>
           <div contenteditable className="chain-name">
             ethereum
           </div>
@@ -33,6 +48,8 @@ export const Home = () => {
           <div className="current-gas">30 wei</div>
         </div>
       </div>
+
+      <GasView isOpen={isModalOpen} onClose={closeModal} chain={chain}></GasView>
     </div>
   );
 };
