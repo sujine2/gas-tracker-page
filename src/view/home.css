@@ -48,21 +48,23 @@ body {
   padding: 2rem;
   margin: 1rem;
   border-radius: 5%;
-  border: 0.3rem solid;
-  border: 0.3rem solid transparent;
+  border: 0.1rem solid;
+  border: 0.1rem solid transparent;
   border-radius: 1.3rem;
   background-origin: border-box;
   background-clip: padding-box, border-box;
   width: 18rem;
   height: 10rem;
   cursor: pointer; 
-  /* box-shadow: 10px 5px 5px white; */
-}
-
-.content:hover {
   background-color: var(--neon-border-color);
   animation: flicker-box 1.5s infinite alternate;
+  cursor: pointer;
 }
+
+/* .content:hover {
+  background-color: var(--neon-border-color);
+  animation: flicker-box 1.5s infinite alternate;
+} */
 
 .chain-name {
   float: right;

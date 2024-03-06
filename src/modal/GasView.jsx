@@ -1,5 +1,7 @@
 import "./gasView.css";
 import React, { useRef, useEffect } from "react";
+import {AreaChart} from '../chart/AreaChart';
+import {BarChart} from '../chart/BarChart';
 
 export const GasView = ({ isOpen, onClose, chain }) => {
   const modalRef = useRef();
@@ -25,13 +27,15 @@ export const GasView = ({ isOpen, onClose, chain }) => {
   return (
     <div className={`modal ${isOpen ? "open" : ""}`}>
       {isOpen
-        ? (document.body.style.overflow = "hidden")
-        : (document.body.style.overflow = "scroll")}
+        ? (document.body.style.setProperty('overflow', 'hidden'))
+        : (document.body.style.setProperty('overflow', 'scroll'))}
       <div ref={modalRef} className="modal-content">
         <span className="modal-close-btn" onClick={onClose}>
           &times;
         </span>
-        {chain}
+        <p className="chain-name">{chain}</p>
+        <AreaChart/>
+        <BarChart/>
       </div>
     </div>
   );

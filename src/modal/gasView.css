@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 
 .modal {
   display: none;
@@ -10,7 +11,7 @@
   background-color: rgba(0, 0, 0, 0.5); /* 반투명한 배경 */
   justify-content: center;
   align-items: center;
-  font-family: "Kode Mono", monospace;
+  font-family: "Poppins", sans-serif;
 }
 
 .modal.open {
@@ -20,11 +21,12 @@
 .modal-content {
   background-color: #000000;
   color: white;
-  width: 50rem;
-  height: 30rem;
+  width: 75vw;
+  height: 75vh;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;  
 }
 
 /* Optional: Add transition effect for smoother opening/closing */
@@ -44,4 +46,8 @@
   right: 1rem;
   font-size: 3rem;
   color: white;
+}
+
+.chain-name {
+  font-size: 1.5rem;
 }
