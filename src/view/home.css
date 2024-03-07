@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 body {
-  background-color: #17181C;
+  background-color: #17181c;
   margin: 0;
   padding: 0;
+  font-family: "Poppins", sans-serif;
 }
 ::-webkit-scrollbar {
   display: none;
@@ -37,9 +38,7 @@ body {
   }
 }
 
-
-.board-container {
-  font-family: "Poppins", sans-serif;
+.menue-container {
   color: #ffffff;
   display: flex;
   justify-content: center;
@@ -51,29 +50,53 @@ body {
   float: left;
 }
 
+.chart-container {
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  /* background-color: #000000; */
+  border-radius: 2rem;
+  /* margin: 3%;
+  padding: 1%; */
+  flex-wrap: wrap;
+  float: left;
+  position: relative;
+}
+
 .container-wrapper {
   width: 100%;
 }
 
-
 .board {
   float: right;
-  width: 85%;
+  width: 90%;
+}
+
+.chart {
+  width: 90%;
 }
 
 .container.board {
   height: 20%;
+  display: flex;
+  flex-direction: column;
+  float: right;
+}
+
+.container.chart {
+  height: 80%;
 }
 
 .nav-bar {
-  width: 15%;
+  width: 10%;
   height: 100%;
   position: fixed;
   float: left;
+  background-color: #000000;
 }
 
-.board-content {
-  /* float: left; */
+.menue-content {
+  float: left;
   padding: 0.6rem;
   margin: 1rem;
   /* border: 0.1rem solid;
@@ -84,12 +107,30 @@ body {
   background-clip: padding-box, border-box; */
   /* width: 2vw;
   height: 10vh; */
-  cursor: pointer; 
+  cursor: pointer;
   /* background-color: var(--neon-border-color); */
   /* animation: flicker-box 1.5s infinite alternate; */
 }
 
-.board-content:hover {
+.chart-content {
+  /* float: left; */
+  padding: 0.6rem;
+  margin: 1rem;
+  z-index: -1;
+  /* border: 0.1rem solid;
+  border: 0.1rem solid transparent; */
+  border-radius: 2rem;
+  /* border-color: rgba(255, 255, 255, 0.2); */
+  /* background-origin: border-box;
+  background-clip: padding-box, border-box; */
+  width: 2vw;
+  height: 10vh;
+  cursor: pointer;
+  /* background-color: var(--neon-border-color); */
+  /* animation: flicker-box 1.5s infinite alternate; */
+}
+
+.menue-content:hover {
   background-color: var(--neon-border-color);
   /* animation: flicker-box 1.5s infinite alternate; */
 }
