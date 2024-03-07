@@ -3,12 +3,11 @@
 
 .modal {
   display: none;
-  position: fixed;
+  /* /* position: fixed; */
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* 반투명한 배경 */
+  height: 100%; 
   justify-content: center;
   align-items: center;
   font-family: "Poppins", sans-serif;
@@ -48,6 +47,8 @@
   color: white;
 }
 
-.chain-name {
+.gas-view-chain-name {
   font-size: 1.5rem;
+  text-transform: uppercase;
+  margin: 0;
 }

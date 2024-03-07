@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import Chart from 'chart.js/auto';
 import "./chart.css"
 
-export const BarChart = () => {
+export const BarChart = ({color}) => {
   useEffect(() => {
     // 차트 데이터 정의
     const label = [
@@ -19,27 +19,27 @@ export const BarChart = () => {
     const data = {
         labels: label,
         datasets: [{
-            label: 'My First Dataset',
+            label: 'Sepolia Gas fee (Wei)',
             data: [65, 59, 80, 81, 56, 55, 40, 51],
             backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-            'rgba(255, 205, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(201, 203, 207, 0.2)',
-            'rgba(201, 203, 207, 0.2)'
+            'rgba(' + color + ', 0.2)',
+            'rgba(' + color + ', 0.2)',
+            'rgba(' + color + ', 0.2)',
+            'rgba(' + color + ', 0.2)',
+            'rgba(' + color + ', 0.2)',
+            'rgba(' + color + ', 0.2)',
+            'rgba(' + color + ', 0.2)',
+            'rgba(' + color + ', 0.2)'
             ],
             borderColor: [
-            'rgb(255, 99, 132)',
-            'rgb(255, 159, 64)',
-            'rgb(255, 205, 86)',
-            'rgb(75, 192, 192)',
-            'rgb(54, 162, 235)',
-            'rgb(153, 102, 255)',
-            'rgb(201, 203, 207)',
-            'rgb(201, 203, 207)'
+            'rgba(' + color + ', 1)',
+            'rgba(' + color + ', 1)',
+            'rgba(' + color + ', 1)',
+            'rgba(' + color + ', 1)',
+            'rgba(' + color + ', 1)',
+            'rgba(' + color + ', 1)',
+            'rgba(' + color + ', 1)',
+            'rgba(' + color + ', 1)'
             ],
             borderWidth: 1
         }]
@@ -49,8 +49,13 @@ export const BarChart = () => {
       scales: {
         y: {
           beginAtZero: true
-        }
+        },
+        xAxes: [{
+            barThickness: 6,  // number (pixels) or 'flex'
+            maxBarThickness: 8 // number (pixels)
+        }]
       }
+      
     };
 
     // 차트 생성
@@ -64,12 +69,20 @@ export const BarChart = () => {
     return () => {
         barChart.destroy()
       }
-  }, []);
+  }, [color]);
   
 
   return (
-    <div className="bar-chart-container">
-      <canvas id="barChart"></canvas>
+    <div className="area-chart-container">
+        <div className="area-chart-content area-chart">
+        <canvas id="barChart"></canvas>
+        </div>
+        <div className="area-chart-content">
+            <div className="area-chart-des">
+            <p className="des-p">Current Gas:</p> 30 gwei <br/>
+            <p className="des-p">Base fee:</p> 9 wei
+            </div>
+        </div>
     </div>
   );
 };
