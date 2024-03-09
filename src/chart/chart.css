@@ -1,13 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-.bar-chart-container{
+.bar-chart-container {
+  font-family: "Poppins", sans-serif;
+}
+
+.sub-area-chart-container {
   font-family: "Poppins", sans-serif;
 }
 
 .area-chart-container {
   font-family: "Poppins", sans-serif;
-  
+
+  /* height: 80vh; */
   /* display: flex; */
   /* justify-content: center; */
   /* flex-wrap: wrap; */
@@ -15,19 +20,34 @@
 
 .area-chart {
   width: 60vw;
-  height: 60vh;
-}
-
-.area-chart-content{
   float: left;
 }
 
+.area-chart-sm {
+  width: 37vw;
+}
+
+.area-chart-content {
+}
+
 .area-chart-des {
-  
+  float: right;
+  width: 17vw;
+  font-size: max(1.2vw, 0.5rem);
+}
+
+.area-chart-des-sm {
   padding: 1rem;
 }
 
-.des-p{
-  font-size: 1.7rem;
+.des-title {
+  font-size: max(2vw, 0.8rem);
   font-weight: 400;
+}
+
+.des-past {
+  font-size: max(1.2vw, 0.5rem);
+  padding: 0.3rem;
+  border-radius: 1rem;
+  margin-left: 1rem;
 }
