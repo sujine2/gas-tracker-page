@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./home.css";
 import { LineChartSm } from "../chart/LineChart-sm";
 import "chart.js/auto";
+import {Socket} from "../socket/Socket"
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -109,6 +110,8 @@ export const Home = () => {
               </div>
             </div>
           </div>
+
+          <Socket/>
         </div>
       </div>
     </div>
