@@ -4,7 +4,6 @@ import "./home.css";
 import { LineChartSm } from "../chart/LineChart-sm";
 import { Socket } from "../socket/socket";
 import "chart.js/auto";
-import { Socket } from "../socket/Socket";
 
 export const Home = () => {
   const navigate = useNavigate();
