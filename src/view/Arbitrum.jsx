@@ -67,7 +67,12 @@ export const Arbitrum = () => {
                 <div className="chain-name">bnb</div>
               </div>
               <div className="menue-content arbitrum">
-                <div className="chain-name">arbitrum</div>
+                <div
+                  className="chain-name"
+                  style={{ color: chain == "arbitrum" ? "#537CEE" : "" }}
+                >
+                  arbitrum
+                </div>
               </div>
             </div>
           </div>

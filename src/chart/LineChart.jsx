@@ -9,6 +9,9 @@ export const LineChart = ({ color }) => {
   const [lowestDesView, setLowestDesView] = useState(false);
   const [averageDesView, setAverageDesView] = useState(false);
   const [highestDesView, setHighestDesView] = useState(false);
+  const [chainGas, setGasData] = useState();
+  const [chainTime, setTimeData] = useState();
+
   function openLowestDes() {
     if (lowestDesView) {
       setLowestDesView(false);
@@ -31,6 +34,22 @@ export const LineChart = ({ color }) => {
       setHighestDesView(true);
     }
   }
+
+  // useEffect(() => {
+  //   // Socket 컴포넌트에서 setMessage 함수를 전달받아 사용
+  //   const handleMessage = (newMessage) => {
+  //     setMessage(newMessage);
+  //   };
+
+  //   // Socket 컴포넌트의 메시지 수신 이벤트에 handleMessage 함수 등록
+  //   Socket.onMessage(handleMessage);
+
+  //   return () => {
+  //     // 컴포넌트가 언마운트될 때 이벤트 핸들러 제거
+  //     Socket.offMessage(handleMessage);
+  //   };
+  // }, []);
+
   var areaChart;
   useEffect(() => {
     // 차트 데이터 정의
