@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+.toggle-container {
+}
+
+.toggle-content {
+  z-index: 0;
+}
+
+.tgl {
+  display: none;
+  &,
+  &:after,
+  &:before,
+  & *,
+  & *:after,
+  & *:before,
+  & + .tgl-btn {
+    box-sizing: border-box;
+    &::selection {
+      background: none;
+    }
+  }
+
+  + .tgl-btn {
+    font-family: "Poppins", sans-serif;
+    outline: 0;
+    display: block;
+    z-index: 10;
+    width: 7em;
+    height: 2.1em;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    &:after,
+    &:before {
+      position: relative;
+      display: block;
+      content: "";
+      width: 30%;
+      height: 100%;
+    }
+
+    &:after {
+      left: 0;
+      color: white;
+      content: "";
+    }
+
+    &:before {
+      /* display: none; */
+      color: white;
+      content: "gwei";
+      float: right;
+      padding-right: 1rem;
+    }
+  }
+
+  &:checked + .tgl-btn:after {
+    left: 70%;
+    content: "";
+  }
+
+  &:checked + .tgl-btn:before {
+    right: 60%;
+    content: "wei";
+    padding-right: 0;
+  }
+}
+
+.tgl-light {
+  + .tgl-btn {
+    background: #2a2c33;
+    border-radius: 1rem;
+    padding: 0.2rem;
+    transition: all 0.4s ease;
+    &:after {
+      border-radius: 1rem;
+      background: #111215;
+      transition: all 0.2s ease;
+      /* padding: 0.2rem; */
+    }
+  }
+
+  &:checked + .tgl-btn {
+    background: #31343c;
+  }
+  &:checked + .tgl-btn:before {
+    color: white;
+  }
+}

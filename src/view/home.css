@@ -10,10 +10,6 @@ body {
   display: none;
 }
 
-.board-container.menue {
-  background-color: #000000;
-}
-
 @keyframes typing {
   from {
     width: 0;
@@ -24,29 +20,6 @@ body {
   50% {
     border-color: transparent;
   }
-}
-
-.menue-container {
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  text-transform: uppercase;
-  /* background-color: #000000; */
-
-  /* padding: 1%; */
-  flex-wrap: wrap;
-  float: left;
-}
-
-.home-menue-container {
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  text-transform: uppercase;
-  /* background-color: #000000; */
-
-  /* padding: 1%; */
-  flex-wrap: wrap;
 }
 
 .container-wrapper {
@@ -60,6 +33,10 @@ body {
 
 .chart {
   width: 90%;
+}
+
+.control-unit {
+  float: right;
 }
 
 .container.board {
@@ -82,31 +59,6 @@ body {
   box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
 }
 
-.menue-content {
-  float: left;
-  padding: clamp(5px, 0.6rem, 10px);
-  margin: clamp(5px, 1rem, 10px);
-  /* border: 0.1rem solid;
-  border: 0.1rem solid transparent; */
-
-  /* border-color: rgba(255, 255, 255, 0.2); */
-  /* background-origin: border-box;
-  background-clip: padding-box, border-box; */
-  /* width: 2vw;
-  height: 10vh; */
-  cursor: pointer;
-  /* background-color: var(--neon-border-color); */
-  /* animation: flicker-box 1.5s infinite alternate; */
-}
-
-.menue-content:hover {
-  background-color: #111113;
-}
-
-.menue-content:active {
-  background-color: #111113;
-}
-
 .chart-content {
   /* float: left; */
 
@@ -126,38 +78,8 @@ body {
   /* animation: flicker-box 1.5s infinite alternate; */
 }
 
-.menue-content:hover {
-  background-color: var(--neon-border-color);
-  /* animation: flicker-box 1.5s infinite alternate; */
-}
-
-.chain-name {
-  float: right;
-  font-size: max(1.3vw, 0.9rem);
-  /* font-size: 0.1rem; */
-  /* word-break: break-all; */
-  width: inherit;
-  /* margin: 10px; */
-  /* text-transform: uppercase; */
-  /* animation: flicker 1.5s infinite alternate; */
-}
-
 .current-gas {
   font-size: 0.5rem;
-}
-
-.chain-name::-moz-selection {
-  /* background-color: var(--neon-border-color); */
-  color: var(--neon-text-color);
-}
-
-.chain-name::selection {
-  /* background-color: var(--neon-border-color); */
-  color: var(--neon-text-color);
-}
-
-.chain-name:focus {
-  outline: none;
 }
 
 .main-chart {
@@ -216,6 +138,7 @@ body {
 
 .home-chart-content {
   margin: 1vw;
+  z-index: -1;
   float: left;
   background-color: #000000;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;

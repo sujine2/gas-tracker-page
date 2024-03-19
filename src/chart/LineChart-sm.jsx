@@ -5,37 +5,46 @@ import annotationPlugin from "chartjs-plugin-annotation";
 import "./chart.css";
 
 Chart.register(annotationPlugin);
-export const LineChartSm = ({ color }) => {
-  const [pastDesView, setPastDesView] = useState(false);
-  const [averageDesView, setAverageDesView] = useState(false);
+export const LineChartSm = ({ color, gas, time, gwei }) => {
+  function fromUnix() {
+    const times = time.map((timestamp) => {
+      const milliseconds = timestamp * 1000;
+      const date = new Date(milliseconds);
 
-  function openPastDes() {
-    if (pastDesView) {
-      setPastDesView(false);
-    } else {
-      setPastDesView(true);
-    }
+      const hours = date.getHours();
+      const minutes = date.getMinutes();
+
+      // 시간 문자열 반환
+      return `${hours}:${minutes}`;
+    });
+    return times;
   }
-  function openAverageDes() {
-    if (averageDesView) {
-      setAverageDesView(false);
-    } else {
-      setAverageDesView(true);
-    }
+
+  function toGwei() {
+    const gweiGas = gas.map((weiGas) => {
+      const gweiGas = weiGas / 10 ** 9;
+      return gweiGas;
+    });
+    return gweiGas;
   }
+
   const ctx = React.useRef(null);
   useEffect(() => {
+    const times = fromUnix();
+    const gasData = gwei ? toGwei() : gas;
+    const unit = gwei ? "gwei" : "wei";
+
     // 차트 데이터 정의
     const data = {
-      labels: ["January", "February", "March", "April", "May", "June", "July"],
+      labels: times,
       datasets: [
         {
-          label: "Sepolia Gas fee (Wei)",
+          label: "Sepolia Gas fee" + "(" + unit + ")",
           backgroundColor: "rgba(" + color + ", 0.2)",
           borderColor: "rgba(" + color + ", 1)",
           borderWidth: 1,
           fill: false,
-          data: [0, 10, 5, 2, 20, 30, 45],
+          data: gasData,
         },
       ],
     };
@@ -96,7 +105,7 @@ export const LineChartSm = ({ color }) => {
       areaChart.clear();
       areaChart.destroy();
     };
-  }, [color]);
+  }, [gas, time, gwei]);
 
   return (
     <div>

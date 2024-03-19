@@ -5,12 +5,11 @@ import annotationPlugin from "chartjs-plugin-annotation";
 import "./chart.css";
 
 Chart.register(annotationPlugin);
-export const LineChart = ({ color }) => {
+export const LineChart = ({ color, gas, time, gwei }) => {
   const [lowestDesView, setLowestDesView] = useState(false);
   const [averageDesView, setAverageDesView] = useState(false);
   const [highestDesView, setHighestDesView] = useState(false);
-  const [chainGas, setGasData] = useState();
-  const [chainTime, setTimeData] = useState();
+  const [currentPriority, setCurrentPriority] = useState("");
 
   function openLowestDes() {
     if (lowestDesView) {
@@ -35,34 +34,46 @@ export const LineChart = ({ color }) => {
     }
   }
 
-  // useEffect(() => {
-  //   // Socket 컴포넌트에서 setMessage 함수를 전달받아 사용
-  //   const handleMessage = (newMessage) => {
-  //     setMessage(newMessage);
-  //   };
+  function fromUnix() {
+    const times = time.map((timestamp) => {
+      const milliseconds = timestamp * 1000;
+      const date = new Date(milliseconds);
 
-  //   // Socket 컴포넌트의 메시지 수신 이벤트에 handleMessage 함수 등록
-  //   Socket.onMessage(handleMessage);
+      const hours = date.getHours();
+      const minutes = date.getMinutes();
 
-  //   return () => {
-  //     // 컴포넌트가 언마운트될 때 이벤트 핸들러 제거
-  //     Socket.offMessage(handleMessage);
-  //   };
-  // }, []);
+      // 시간 문자열 반환
+      return `${hours}:${minutes}`;
+    });
+    return times;
+  }
+
+  function toGwei() {
+    const gweiGas = gas.map((weiGas) => {
+      const gweiGas = weiGas / 10 ** 9;
+      return gweiGas;
+    });
+    return gweiGas;
+  }
 
   var areaChart;
   useEffect(() => {
-    // 차트 데이터 정의
+    const times = fromUnix();
+    const gasData = gwei ? toGwei() : gas;
+    const unit = gwei ? "gwei" : "wei";
+
+    console.log("gas", gas);
+    console.log("time", time);
     const data = {
-      labels: ["January", "February", "March", "April", "May", "June", "July"],
+      labels: times,
       datasets: [
         {
-          label: "Sepolia Gas fee (Wei)",
+          label: "Sepolia Gas fee" + "(" + unit + ")",
           backgroundColor: "rgba(" + color + ", 0.2)",
           borderColor: "rgba(" + color + ", 1)",
           borderWidth: 1,
           fill: false,
-          data: [0, 10, 5, 2, 20, 30, 45],
+          data: gasData,
         },
       ],
     };
@@ -92,7 +103,7 @@ export const LineChart = ({ color }) => {
         tension: {
           duration: 1000,
           easing: "easeInQuart",
-          from: 0.3,
+          from: 0.5,
           to: 0,
           loop: true,
         },
@@ -120,79 +131,80 @@ export const LineChart = ({ color }) => {
       options: options,
     });
 
+    setCurrentPriority(gasData.pop() + " " + unit);
+
     return () => {
       areaChart.clear();
       areaChart.destroy();
     };
-  }, [color]);
+  }, [gas, time, gwei]);
 
   return (
-    <div>
-      <div className="area-chart-container">
-        <div className="area-chart-content area-chart">
-          <canvas id="areaChart"></canvas>
-        </div>
-        <div className="area-chart-content">
-          <div className="area-chart-des">
-            Current Gas <span style={{ fontWeight: 700 }}> 30wei</span>
-            <br /> <br />
-            <span
-              style={{
-                transform: highestDesView ? "rotate( 90deg )" : "",
-                transition: "all 0.3s ease-in-out",
-                display: "inline-block",
-                margin: 6,
-              }}
-            >
-              ❯
-            </span>{" "}
-            <span
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                openHighestDes();
-              }}
-            >
-              The Highest Gas
-            </span>
-            <br />
-            <span
-              style={{
-                transform: lowestDesView ? "rotate( 90deg )" : "",
-                transition: "all 0.3s ease-in-out",
-                display: "inline-block",
-                margin: 6,
-              }}
-            >
-              ❯
-            </span>{" "}
-            <span
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                openLowestDes();
-              }}
-            >
-              The Lowest Gas
-            </span>
-            <br />
-            <span
-              style={{
-                transform: averageDesView ? "rotate( 90deg )" : "",
-                transition: "all 0.3s ease-in-out",
-                display: "inline-block",
-                margin: 6,
-              }}
-            >
-              ❯
-            </span>{" "}
-            <span
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                openAverageDes();
-              }}
-            >
-              Average Gas
-            </span>
-          </div>
+    <div className="area-chart-container">
+      <div className="area-chart-content area-chart">
+        <canvas id="areaChart"></canvas>
+      </div>
+      <div className="area-chart-content">
+        <div className="area-chart-des">
+          Current Gas{": "}
+          <span style={{ fontWeight: 700 }}> {currentPriority}</span>
+          <br /> <br />
+          <span
+            style={{
+              transform: highestDesView ? "rotate( 90deg )" : "",
+              transition: "all 0.3s ease-in-out",
+              display: "inline-block",
+              margin: 6,
+            }}
+          >
+            ❯
+          </span>{" "}
+          <span
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              openHighestDes();
+            }}
+          >
+            The Highest Gas
+          </span>
+          <br />
+          <span
+            style={{
+              transform: lowestDesView ? "rotate( 90deg )" : "",
+              transition: "all 0.3s ease-in-out",
+              display: "inline-block",
+              margin: 6,
+            }}
+          >
+            ❯
+          </span>{" "}
+          <span
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              openLowestDes();
+            }}
+          >
+            The Lowest Gas
+          </span>
+          <br />
+          <span
+            style={{
+              transform: averageDesView ? "rotate( 90deg )" : "",
+              transition: "all 0.3s ease-in-out",
+              display: "inline-block",
+              margin: 6,
+            }}
+          >
+            ❯
+          </span>{" "}
+          <span
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              openAverageDes();
+            }}
+          >
+            Average Gas
+          </span>
         </div>
       </div>
     </div>

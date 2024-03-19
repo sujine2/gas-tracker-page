@@ -1,66 +1,22 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import "./home.css";
-import { LineChartSm } from "../chart/LineChart-sm";
-import { Socket } from "../socket/socket";
+import { Socket } from "../socket/Socket";
 import "chart.js/auto";
+import { TopNavBar } from "../nav/TopNavBar";
+import "./home.css";
+import { BarTimer } from "../timer/BarTimer";
 
 export const Home = () => {
   const navigate = useNavigate();
+  const [gwei, setGwei] = useState(true);
 
   return (
     <div>
       <div className="container-wrapper">
         <div className="container nav-bar">adfaf</div>
         <div className="container board">
-          <div className="board-container menue">
-            <div className="menue-container">
-              <div className="menue-content">
-                <div className="chain-name">All</div>
-              </div>
-              <div
-                className="menue-content ethereum"
-                onClick={() => {
-                  navigate("/ethereum");
-                }}
-              >
-                <div className="chain-name">ethereum</div>
-              </div>
-              <div
-                className="menue-content avalanche"
-                onClick={() => {
-                  navigate("/avalanche");
-                }}
-              >
-                <div className="chain-name">avalanche</div>
-              </div>
-              <div
-                className="menue-content polygon"
-                onClick={() => {
-                  navigate("/polygon");
-                }}
-              >
-                <div className="chain-name">polygon</div>
-              </div>
-              <div
-                className="menue-content bnb"
-                onClick={() => {
-                  navigate("/bnb");
-                }}
-              >
-                <div className="chain-name">bnb</div>
-              </div>
-              <div
-                className="menue-content arbitrum"
-                onClick={() => {
-                  navigate("/arbitrum");
-                }}
-              >
-                <div className="chain-name">arbitrum</div>
-              </div>
-            </div>
-          </div>
-
+          <TopNavBar setter={setGwei} />
+          <BarTimer />
           <div className="border-container">
             <div className="home-chart-container">
               <div
@@ -70,8 +26,15 @@ export const Home = () => {
                 }}
               >
                 ethereum
-                <LineChartSm color={"3, 230, 200"} />
+                {/* <LineChartSm color={"3, 230, 200"} /> */}
+                <Socket
+                  id={"ethereum"}
+                  color={"3, 230, 200"}
+                  isSm={true}
+                  gwei={gwei}
+                />
               </div>
+
               <div
                 className="home-chart-content"
                 onClick={() => {
@@ -79,7 +42,13 @@ export const Home = () => {
                 }}
               >
                 <span>avalanche</span>
-                <LineChartSm color={"253, 51, 0"} />
+                {/* <LineChartSm color={"253, 51, 0"} /> */}
+                <Socket
+                  id={"avalanche"}
+                  color={"253, 51, 0"}
+                  isSm={true}
+                  gwei={gwei}
+                />
               </div>
               <div
                 className="home-chart-content"
@@ -88,7 +57,13 @@ export const Home = () => {
                 }}
               >
                 <span>polygon</span>
-                <LineChartSm color={"173, 98, 242"} />
+                {/* <LineChartSm color={"173, 98, 242"} /> */}
+                <Socket
+                  id={"polygon"}
+                  color={"173, 98, 242"}
+                  isSm={true}
+                  gwei={gwei}
+                />
               </div>
               <div
                 className="home-chart-content"
@@ -97,7 +72,13 @@ export const Home = () => {
                 }}
               >
                 <span>bnb</span>
-                <LineChartSm color={"243, 255, 5"} />
+                {/* <LineChartSm color={"243, 255, 5"} /> */}
+                <Socket
+                  id={"bnb"}
+                  color={"243, 255, 5"}
+                  isSm={true}
+                  gwei={gwei}
+                />
               </div>
               <div
                 className="home-chart-content"
@@ -106,12 +87,16 @@ export const Home = () => {
                 }}
               >
                 <span>arbitrum</span>
-                <LineChartSm color={"83, 124, 238"} />
+                {/* <LineChartSm color={"83, 124, 238"} /> */}
+                <Socket
+                  id={"arbitrum"}
+                  color={"83, 124, 238"}
+                  isSm={true}
+                  gwei={gwei}
+                />
               </div>
             </div>
           </div>
-
-          <Socket />
         </div>
       </div>
     </div>
